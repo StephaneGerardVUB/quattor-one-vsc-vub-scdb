@@ -1,0 +1,79 @@
+<project name="VSC-VUB TASKS" default="all" basedir=".">
+
+
+	<description>
+		Customized tasks for VSC-VUB.
+ 	</description>
+
+	<target name="notify" depends="define.tasks">
+		<!-- Notify all of the quattor client machines. -->
+		<quattor-notify message="ccm" port="7777">
+			<fileset dir="${build.xml}" includes="**/*.xml" />	
+		</quattor-notify>
+
+	</target>
+
+
+	<!-- **************************************************************************
+	Compile all of the machine profiles for a particular cluster.
+	************************************************************************** -->
+
+
+	<target name="compile.profiles.all-clusters" depends="init,define.tasks,check.syntax" description="Compile machine XML profiles from all clusters">
+
+		<subant target="compile.cluster.profiles" genericantfile="${basedir}/build.xml" inheritall="true">
+			<dirset dir="${cfg.clusters}" includes="*-cloud"/>
+		</subant>
+
+		<pan-profile-info outputdir="${build.xml}"/>
+
+	</target>
+ 
+
+	<target name="compile.profiles.vsc-vub-cloud" depends="init,define.tasks,check.syntax" description="Compile machine XML profiles from cluster vsc-vub-cloud">
+		
+		<subant target="compile.cluster.profiles" genericantfile="${basedir}/build.xml" inheritall="true">
+			<dirset dir="${cfg.clusters}" includes="vsc-vub-cloud"/>
+		</subant>
+		
+		<pan-profile-info outputdir="${build.xml}"/>
+	
+	</target>
+
+	<target name="compile.profiles.alv-cloud" depends="init,define.tasks,check.syntax" description="Compile machine XML profiles from cluster alv-cloud">
+		
+		<subant target="compile.cluster.profiles" genericantfile="${basedir}/build.xml" inheritall="true">
+			<dirset dir="${cfg.clusters}" includes="alv-cloud"/>
+		</subant>
+		
+		<pan-profile-info outputdir="${build.xml}"/>
+	
+	</target>
+	
+	<!-- **************************************************************************
+	pxe : generate pxe files from XML profiles
+	************************************************************************** -->
+
+	<target name="pxe" depends="all" description="Create PXE files from XML profiles" >
+		
+		<quattor-transform transformXPath="/profile/software/components/aii/nbp/template" xslPath="${xsl.dir}" outputDir="${build.xml}">
+			<fileset dir="${build.xml}" includes="profile_*.xml"/>
+			<mapper type="glob" from="profile_*.xml" to="*.cfg"/>
+		</quattor-transform>
+
+	</target>
+
+	<!-- **************************************************************************
+	kickstart : generate kickstart files from XML profiles
+	************************************************************************** -->
+
+	<target name="kickstart" depends="all" description="Create kickstart files from XML profiles" >
+		
+		<quattor-transform transformXPath="/profile/software/components/aii/osinstall/template" xslPath="${xsl.dir}" outputDir="${build.xml}">
+			<fileset dir="${build.xml}" includes="profile_*.xml"/>
+			<mapper type="glob" from="profile_*.xml" to="*.ks"/>
+		</quattor-transform>
+	
+	</target>
+
+</project>
