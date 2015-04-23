@@ -55,22 +55,14 @@ variable YUM_SNAPSHOT_DATE = '20140313';#even if we at IIHE use REPO_YUM_SNAPSHO
 
 ### Repository snapshots in use
 variable REPO_YUM_SNAPSHOT_DATE = dict(
-    'ca','1428657506',
-    'sl6_addons','20140313',
-    'sl6_epel','1428668577',
-    'sl630_x86_64','20140328',
-    'sl630_x86_64_errata','1418902587',
-    'sl650_x86_64','20140812',
-    'sl650_x86_64_errata','1412002908',
-    'emi_3_0_sl6_x86_64_base','20140313',
-    'emi_3_0_sl6_x86_64_third_party','20140313',
-    'emi_3_0_sl6_x86_64_updates','20140313',
-    'wlcg_x86_64','1413809906',
-    'cvmfs','20140613',
-    'sl6_t2b','1428665069',
-    'sl6x_x86_64','1424267722',
-    'sl6x_x86_64_updates','1424189921',
-    'sl6x_x86_64_errata','1424189376',
+	'sl6_addons',			'20140313',
+	'sl6_epel',				'1428668577',
+	'sl6_t2b',				'1428665069',
+	'sl6x_x86_64',			'1424267722',
+	'sl6x_x86_64_updates',	'1424189921',
+	'sl6x_x86_64_errata',	'1424189376',
+	'sl6_iihe_rubygems',	'1429733818',
+	'one412_centos6_x86_64','1429736006',
 );
 
 ####################################################################

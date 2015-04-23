@@ -6,6 +6,23 @@ variable DB_IP = dict(
 
   ### SERVERS ###
 
+  escape('ccq.iihe.ac.be'),'193.190.247.140',
+  escape('ccqg.iihe.ac.be'),'193.190.247.126',
+  escape('ccq.wn.iihe.ac.be'),'192.168.10.100',
+  escape('ccq3g.iihe.ac.be'),'193.190.247.125',
+
+  escape('qclig.iihe.ac.be'),'193.58.172.13',
+  escape('qclig.wn.iihe.ac.be'),'192.168.10.115',
+
+  escape('gangliat2b.iihe.ac.be'),'193.58.172.58',
+  escape('gangliat2b.wn.iihe.ac.be'),'192.168.10.174',
+  
+  escape('proxyt2b.iihe.ac.be'),'193.58.172.59',
+  escape('proxyt2b.wn.iihe.ac.be'),'192.168.10.32',
+  
+  escape('test.iihe.ac.be'),'193.58.172.122',
+  escape('test.wn.iihe.ac.be'),'192.168.10.97',
+  
   escape('vscvhost01.wn.iihe.ac.be'),'192.168.10.142',
   escape('vscvhost02.wn.iihe.ac.be'),'192.168.10.143',
   escape('vscvhost03.wn.iihe.ac.be'),'192.168.10.144',
