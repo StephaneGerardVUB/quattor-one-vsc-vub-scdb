@@ -55,14 +55,15 @@ variable YUM_SNAPSHOT_DATE = '20140313';#even if we at IIHE use REPO_YUM_SNAPSHO
 
 ### Repository snapshots in use
 variable REPO_YUM_SNAPSHOT_DATE = dict(
-	'sl6_addons',			'20140313',
-	'sl6_epel',				'1428668577',
-	'sl6_t2b',				'1428665069',
-	'sl6x_x86_64',			'1424267722',
-	'sl6x_x86_64_updates',	'1424189921',
-	'sl6x_x86_64_errata',	'1424189376',
-	'sl6_iihe_rubygems',	'1429733818',
-	'one412_centos6_x86_64','1429736006',
+	'sl6_addons',					'20140313',
+	'sl6_epel',						'1428668577',
+	'sl6_t2b',						'1430320749',
+	'sl6x_x86_64',					'1424267722',
+	'sl6x_x86_64_updates',			'1424189921',
+	'sl6x_x86_64_errata',			'1424189376',
+	'sl6_iihe_rubygems',			'1429733818',
+	'one412_centos6_x86_64',		'1429736006',
+	'ceph_extras_centos6_x86_64',	'1429863067',
 );
 
 ####################################################################
@@ -158,7 +159,7 @@ variable AII_OSINSTALL_SUBURL ?= '';
 
 ## place to get profiles
 variable QUATTOR_PROFILE_NAME ?= 'profile_'+FULL_HOSTNAME+'.xml';
-variable QUATTOR_PROFILE_URL ?= 'https://' + AII_OSINSTALL_SRV + ':444/profiles';
+variable QUATTOR_PROFILE_URL ?= 'https://' + AII_OSINSTALL_SRV + ':444/profiles_vscvub';
 
 # spma proxy location
 variable USE_SPMA_PROXY ?= true;

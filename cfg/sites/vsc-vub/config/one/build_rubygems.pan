@@ -1,4 +1,4 @@
-template config/one_build_rubygems;
+template config/one/build_rubygems;
 
 # packages required to compile the gems
 '/software/packages/{gcc}' ?= dict();

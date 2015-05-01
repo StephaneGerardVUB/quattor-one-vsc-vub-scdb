@@ -11,14 +11,14 @@
 
 # 
 # #
-# opennebula, 14.10.0-rc2-SNAPSHOT, ${rpm.release}, 2015-04-04T23:24:15Z
+# opennebula, 14.10.0-rc2-SNAPSHOT, rc2_SNAPSHOT20150429142452, 20150429-1623
 #
 
-@{
+@documentation{
 sudo template sets the sudoers file.
 oneadmin user should be able to restart libvirt services
 and set virsh secret (Ceph) in each hypervisor.
-@}
+}
 
 unique template components/opennebula/sudo;
 
@@ -29,10 +29,14 @@ include 'components/sudo/config';
          "/sbin/service libvirtd restart",
          "/sbin/service libvirt-guests restart",
          '/usr/bin/virsh secret-set-value *',
-         '/usr/bin/virsh secret-define *'
+         '/usr/bin/virsh secret-define *',
+         '/usr/sbin/iptables',
+         '/usr/sbin/ebtables',
+         '/usr/bin/ovs-vsctl',
+         '/usr/bin/ovs-ofctl',
      );
      foreach (i; cmd; sudolist){
-         nl = nlist("host", "ALL",
+         nl = dict("host", "ALL",
                     "options", "NOPASSWD:",
                     "run_as", "ALL",
                     "user", "oneadmin");

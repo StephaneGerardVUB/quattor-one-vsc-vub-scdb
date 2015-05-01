@@ -1,6 +1,6 @@
 ############################################################
 #
-# template machine-types/simple
+# template machine-types/non-grid/base
 #
 # This template is to install a server without middleware.
 #
@@ -8,7 +8,7 @@
 #
 ############################################################
 
-unique template machine-types/simple;
+unique template machine-types/non-grid/base;
 
 
 # Include static information and derived global variables.

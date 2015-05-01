@@ -11,10 +11,10 @@ template config/nfs/one_ds_mount;
 #	return(tbl);
 #};
 
-# kali.wn is the file server for the VSC-VUB cloud
+# kali.wn is the datastore for the VSC-VUB cloud
 variable ONE_NFS_DS_SERVER ?= '192.168.10.141';
 variable ONE_NFS_DS_EXPORTED_DIR ?= '/storage1/datastores';
-variable ONE_DS_DIR ?= '/mnt/datastores';
+variable ONE_DS_DIR ?= '/var/lib/one/datastores';
 
 # The mount point should be owned by oneadmin :
 include 'components/dirperm/config';

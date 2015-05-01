@@ -75,6 +75,15 @@ include {
 };
 ## END : freeipa part
 
+# include ipa-client if USE_FREEIPA
+include {
+	if (USE_FREEIPA) {
+		return('config/ipa_enrollment');
+	} else {
+		return(null);
+	};
+};
+
 # AUTOFS
 # ----------------------------------------------------------------------------
 

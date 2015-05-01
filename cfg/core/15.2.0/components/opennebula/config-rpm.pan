@@ -17,7 +17,7 @@ include {'components/opennebula/schema'};
 
 # Package to install
 #"/software/packages" = pkg_repl("ncm-opennebula", "14.10.0-${rpm.release}", "noarch");
-"/software/packages" = pkg_repl("ncm-opennebula", "14.10.0-rc2_SNAPSHOT20150405000236", "noarch");
+"/software/packages" = pkg_repl("ncm-opennebula", "14.10.0-rc2_SNAPSHOT20150429142452", "noarch");
 
 
 #'/software/components/opennebula/dependencies/pre' ?= list('spma', 'accounts', 'sudo', 'useraccess');

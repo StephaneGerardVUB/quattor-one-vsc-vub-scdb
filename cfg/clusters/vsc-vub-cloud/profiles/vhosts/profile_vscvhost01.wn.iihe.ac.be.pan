@@ -10,15 +10,13 @@ variable NETWORK_PARAMS_DEFAULT ?= dict(
 );
 
 
-include 'machine-types/simple';
-
-
-include 'config/one_vsc_cloud';
-include 'components/opennebula/config';
+include 'machine-types/non-grid/base';
 
 
 # Configure this machine as an OpenNebula frontend
-include 'config/one_frontend';
+include 'config/one/frontend';
+
+
 
 
 # software repositories (should be last)

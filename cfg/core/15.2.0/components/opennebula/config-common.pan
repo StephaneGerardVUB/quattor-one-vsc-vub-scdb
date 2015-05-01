@@ -11,7 +11,7 @@
 
 # 
 # #
-# opennebula, 14.10.0-rc2-SNAPSHOT, ${rpm.release}, 2015-04-04T23:24:15Z
+# opennebula, 14.10.0-rc2-SNAPSHOT, rc2_SNAPSHOT20150429142452, 20150429-1623
 #
 
 unique template components/opennebula/config-common;

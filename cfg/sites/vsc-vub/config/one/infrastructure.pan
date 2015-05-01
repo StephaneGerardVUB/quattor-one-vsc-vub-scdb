@@ -1,8 +1,6 @@
-template config/one_vsc_cloud;
+template config/one/infrastructure;
 
-include 'components/opennebula/schema';
-
-bind '/software/components/opennebula' = component_opennebula;
+include 'components/opennebula/config';
 
 # list of the one hosts
 '/software/components/opennebula/hosts' = list('vscvhost02.wn.iihe.ac.be');
@@ -35,10 +33,41 @@ bind '/software/components/opennebula' = component_opennebula;
 '/software/components/opennebula/vnets' = list(
 	dict(
 		'name',			'Private_T2B',
-		'type',			'FIXED',
 		'bridge',		'br0',
 		'gateway',		'192.168.10.200',
 		'dns',			'193.58.172.5',
-		'network_mask',	'255.255.0.0'
+		'network_mask',	'255.255.0.0',
+		'ar',			dict(
+							'type',		'IP4',
+							'ip',		'192.168.52.1',
+							'size',		100,
+						),
 	)
 );
+
+
+# configure datastore
+prefix '/software/components/opennebula/datastores/0';
+'name' = 'nfs_ds';
+#'bridge_list' = list(FULL_HOSTNAME); # for now, do this from the headnode
+#'ceph_host' = CEPH_MON_HOSTS;
+#'ceph_secret' = CEPH_LIBVIRT_UUID;
+#'ceph_user' = 'libvirt';
+#'ceph_user_key' = CEPH_LIBVIRT_SECRET;
+'datastore_capacity_check' = true;
+#'pool_name' = 'one';
+'type' = 'SYSTEM_DS';
+#'rbd_format' = 2;
+'disk_type' = 'FILE';
+#'ds_mad' = 'fs';
+'tm_mad' = 'shared';
+'type' = 'SYSTEM_DS';
+
+# untouchables resources
+prefix '/software/components/opennebula/untouchables';
+'datastores' = list('system');
+
+# extra conf
+prefix '/software/components/opennebula';
+'ssh_multiplex' = true;
+'tm_system_ds' = 'shared';

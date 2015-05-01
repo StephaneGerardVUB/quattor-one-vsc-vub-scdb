@@ -1,11 +1,12 @@
-template config/one_frontend;
+template config/one/frontend;
 
 ## Goal : to configure an OpenNebula frontend
+
 
 # add opennebula and rubygems repositories
 include 'quattor/functions/repository';
 '/software/repositories' = {
-	add_repositories( list( 'opennebula_4.12_centos_x86_64', 'sl6_iihe_rubygems' ) );
+	add_repositories( list( 'opennebula_4.12_centos6_x86_64', 'sl6_iihe_rubygems' ), 'repository/snapshot' );
 };
 
 
@@ -15,29 +16,14 @@ include 'quattor/functions/repository';
 
 # Uncomment the line below if you are not able to install the ruby gems
 # under the form of rpm packages (generated with Alvaro's script).
-#include { 'config/one_build_rubygems' };
+#include { 'config/one/build_rubygems' };
 
 # /usr/share/one/install_gems
 # will install gems under the form of packages generated with this tool :
 # https://github.com/OpenNebula/addon-installgems
 # (see the sl6_iihe_rubygems added above)
-'/software/packages/{rubygem-zendesk_api}' ?= dict();
-'/software/packages/{rubygem-treetop}' ?= dict();
-'/software/packages/{rubygem-amazon-ec2}' ?= dict();
-'/software/packages/{rubygem-aws-sdk}' ?= dict();
-'/software/packages/{rubygem-builder}' ?= dict();
-'/software/packages/{rubygem-curb}' ?= dict();
-'/software/packages/{rubygem-mini_portile}' ?= dict();
-'/software/packages/{rubygem-mysql}' ?= dict();
-'/software/packages/{rubygem-net-ldap}' ?= dict();
-'/software/packages/{rubygem-ox}' ?= dict();
-'/software/packages/{rubygem-parse-cron}' ?= dict();
-'/software/packages/{rubygem-rack-protection}' ?= dict();
-'/software/packages/{rubygem-sqlite3}' ?= dict();
-'/software/packages/{rubygem-tilt}' ?= dict();
-'/software/packages/{rubygem-trollop}' ?= dict();
-'/software/packages/{rubygem-xml-simple}' ?= dict();
-'/software/packages/{rubygem-zendesk_api}' ?= dict();
+include 'config/one/rubygems';
+
 
 # needed for sunstone to start, though it is not a dependency
 '/software/packages/{libxslt}' ?= dict();
@@ -93,16 +79,16 @@ EOF
 	)
 );
 
-# change datastore paths in /etc/one/oned.conf
-'/software/components/filecopy/services' = npush(
-	escape('/root/change_datastore_location.sh'),
-	dict(
-		'config',	"#!/bin/bash\n sed -i  's|#DATASTORE_LOCATION  = /var/lib/one/datastores|DATASTORE_LOCATION  = /mnt/datastores|' /etc/one/oned.conf\nsed -i  's|#DATASTORE_BASE_PATH = /var/lib/one/datastores|DATASTORE_BASE_PATH = /mnt/datastores|' /etc/one/oned.conf",
-		'restart',	'/root/change_datastore_location.sh',
-		'owner',	'root:root',
-		'perms',	'0755',
-	)
-);
+## change datastore paths in /etc/one/oned.conf
+#'/software/components/filecopy/services' = npush(
+#	escape('/root/change_datastore_location.sh'),
+#	dict(
+#		'config',	"#!/bin/bash\n sed -i  's|#DATASTORE_LOCATION  = /var/lib/one/datastores|DATASTORE_LOCATION  = /mnt/datastores|' /etc/one/oned.conf\nsed -i  's|#DATASTORE_BASE_PATH = /var/lib/one/datastores|DATASTORE_BASE_PATH = /mnt/datastores|' /etc/one/oned.conf",
+#		'restart',	'/root/change_datastore_location.sh',
+#		'owner',	'root:root',
+#		'perms',	'0755',
+#	)
+#);
 
 #NOTE : the 2 commands below have been commented because we finally decided
 #		to export /var/lib/one from the frontend.
@@ -114,3 +100,10 @@ EOF
 # in the mount /var/lib/one :
 #'/software/components/filecopy/dependencies/pre' = { merge( SELF, list( 'nfs' ) ) };
 #'/software/components/nfs/dependencies/pre' = { merge( SELF, list( 'dirperm' ) ) };
+
+# Below include is to define resources that are part on what is called "infrastructure"
+# in the sunstone interface : Clusters, Hosts, Datastores, Virtual Networks,...
+include 'config/one/infrastructure';
+
+#'/software/components/chkconfig/service/opennebula/off' = '';
+#'/software/components/chkconfig/service/opennebula-sunstone/off' = '';
