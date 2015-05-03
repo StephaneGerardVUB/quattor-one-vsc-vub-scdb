@@ -40,7 +40,7 @@ include 'quattor/types/aii';
 include 'quattor/types/grid';
 include 'quattor/types/hardware';
 
-type structure_system = {
+type structure_system = extensible {
     "aii"           ? structure_aii
     "architecture"  ? string with match (SELF,'i386|ia64|x86_64|sparc')
                                 # "system architecture"

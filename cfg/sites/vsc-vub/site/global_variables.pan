@@ -141,7 +141,7 @@ variable DIRECT_ROUTES_DEST = list(
 # AII site specific configuration
 
 # Name of os repository server used by PXE installation
-variable AII_OSINSTALL_SRV ?= 'qclig.wn.iihe.ac.be';
+variable AII_OSINSTALL_SRV ?= 'aiisrv.wn.iihe.ac.be';
 
 # Name of tftp server used by PXE installation
 # Defaults to AII_OSINSTALL_SRV.
@@ -159,7 +159,7 @@ variable AII_OSINSTALL_SUBURL ?= '';
 
 ## place to get profiles
 variable QUATTOR_PROFILE_NAME ?= 'profile_'+FULL_HOSTNAME+'.xml';
-variable QUATTOR_PROFILE_URL ?= 'https://' + AII_OSINSTALL_SRV + ':444/profiles_vscvub';
+variable QUATTOR_PROFILE_URL ?= 'https://' + AII_OSINSTALL_SRV + ':444/profiles';
 
 # spma proxy location
 variable USE_SPMA_PROXY ?= true;
