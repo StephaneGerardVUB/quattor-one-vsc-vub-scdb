@@ -18,7 +18,7 @@ include 'components/opennebula/config';
 #'/software/components/opennebula/oned/onegate_endpoint' = 'http://hyp004.cubone.os:5030';
 
 # xml-rpc password
-'/software/components/opennebula/rpc/password' = ONE_RPC_PASSWORD;
+#'/software/components/opennebula/rpc/password' = ONE_RPC_PASSWORD;
 
 # users
 '/software/components/opennebula/users' = list(
@@ -37,11 +37,11 @@ include 'components/opennebula/config';
 		'gateway',		'192.168.10.200',
 		'dns',			'193.58.172.5',
 		'network_mask',	'255.255.0.0',
-		'ar',			dict(
-							'type',		'IP4',
-							'ip',		'192.168.52.1',
-							'size',		100,
-						),
+#		'ar',			dict(
+#							'type',		'IP4',
+#							'ip',		'192.168.52.1',
+#							'size',		100,
+#						),
 	)
 );
 
@@ -56,12 +56,12 @@ prefix '/software/components/opennebula/datastores/0';
 #'ceph_user_key' = CEPH_LIBVIRT_SECRET;
 'datastore_capacity_check' = true;
 #'pool_name' = 'one';
-'type' = 'SYSTEM_DS';
+'type' = 'IMAGE_DS';
 #'rbd_format' = 2;
 'disk_type' = 'FILE';
-#'ds_mad' = 'fs';
+'ds_mad' = 'fs';
 'tm_mad' = 'shared';
-'type' = 'SYSTEM_DS';
+
 
 # untouchables resources
 prefix '/software/components/opennebula/untouchables';

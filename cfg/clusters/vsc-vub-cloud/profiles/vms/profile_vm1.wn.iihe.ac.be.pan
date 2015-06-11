@@ -3,7 +3,8 @@ object template profile_vm1.wn.iihe.ac.be;
 include 'machine-types/non-grid/base';
 
 # AII opennebula VM
-include 'config/one/onevm';
+#include 'config/one/onevm';
+include 'machine-types/non-grid/onevm';
 
 #
 # software repositories (should be last)

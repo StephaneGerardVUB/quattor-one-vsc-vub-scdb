@@ -12,7 +12,7 @@ include 'machine-types/non-grid/base';
 
 
 # Configure this machine as an OpenNebula node (hypervizor)
-include 'config/one/node';
+include 'features/one_node/config';
 
 
 # software repositories (should be last)

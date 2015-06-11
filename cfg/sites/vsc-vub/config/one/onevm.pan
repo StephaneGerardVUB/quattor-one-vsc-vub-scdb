@@ -4,21 +4,21 @@ unique template config/one/onevm;
 
 # set opennebula map
 include 'quattor/aii/opennebula/schema';
-bind "/system/opennebula" = opennebula_vmtemplate;
+bind '/system/opennebula' = opennebula_vmtemplate;
 
 #include 'site/config-vm';
 #>>>>Below is the content of site/config-vms from Alvaro's example
 # AII opennebula VM conf
 
 # Set network
-prefix "/system/opennebula";
-"vnet" = dict(
-    "eth0", "Private_T2B",
+prefix '/system/opennebula';
+'vnet' = dict(
+	'eth0', 'Private_T2B',
 );
 
 # Set storage
-"datastore" = dict(
-    "vda", "nfs_ds",
+'datastore' = dict(
+	'vda', 'default',
 );
 
 # set aii opennebula hooks
@@ -28,5 +28,5 @@ final variable OPENNEBULA_AII_ONHOLD = false;
 
 include 'quattor/aii/opennebula/default';
 
-"/software/packages/{acpid}" = dict();
-"/software/components/chkconfig/service/acpid" = dict('on','', 'startstop',true);
+'/software/packages/{acpid}' = dict();
+'/software/components/chkconfig/service/acpid' = dict('on','', 'startstop',true);
